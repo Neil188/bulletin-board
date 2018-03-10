@@ -1,0 +1,69 @@
+{
+    "env": {
+        "es6": true,
+        "node": true,
+        "browser": true
+    },
+    "parser": "babel-eslint",
+    "extends": [
+        "airbnb",
+        "prettier",
+        "prettier/react"
+    ],
+    "rules": {
+        "linebreak-style": 0,
+        "strict": 0,
+        "indent": [1, 4],
+        "no-debugger": 0,
+        "max-len": [2, {
+            "code": 85,
+            "tabWidth": 4,
+            "ignoreUrls": true
+        }],
+        "max-statements": [1, 15],
+        "max-depth": [1, 2],
+        "prefer-arrow-callback": 0,
+        "func-names": 0,
+        "comma-dangle": [
+            2,
+            {
+                "arrays": "always-multiline",
+                "objects": "always-multiline",
+                "imports": "always-multiline",
+                "exports": "always-multiline",
+                "functions": "ignore"
+            }
+        ],
+        "no-trailing-spaces": 1,
+        "no-unused-vars": [
+            1,
+            {
+                "vars": "local",
+                "args": "none"
+            }
+
+        ],
+        "no-nested-ternary": 0,
+        "react/jsx-filename-extension": 0,
+        "react/jsx-indent": [1, 4],
+        "react/jsx-indent-props": [1, 4],
+        "react/no-did-mount-set-state": 0,
+        "jsx-a11y/anchor-is-valid": [
+            "error",
+            {
+                "components": ["Link"],
+                "specialLink": ["to"]
+            }
+        ],
+        "jsx-a11y/label-has-for": [2, {
+            "required": {
+                "every": ["id"]
+            }
+        }]
+    },
+    "plugins": [
+        "html",
+        "prettier",
+        "react"
+    ]
+}
