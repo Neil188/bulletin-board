@@ -11,7 +11,22 @@ export default class Board extends Component {
         this.eachNote = this.eachNote.bind(this);
         this.update = this.update.bind(this);
         this.remove = this.remove.bind(this);
-        this.add = this.add.bind(this, 'New Note');
+        this.add = this.add.bind(this);
+        this.addNew = this.add.bind(this, 'New Note');
+    }
+
+    componentWillMount() {
+        const self = this;
+        if (this.props.count) {
+            fetch(`https://baconipsum.com/api/?type=all-meat&sentences=${this.props.count}`)
+                .then(res => res.json())
+                .then(json => json[0]
+                    .split('. ')
+                    .forEach( sentence =>
+                        self.add(sentence.substring(0,25))
+                    )
+                );
+        }
     }
 
     add(text) {
@@ -68,7 +83,7 @@ export default class Board extends Component {
             <div className='board'>
                 {this.state.notes.map(this.eachNote)}
                 <button
-                    onClick={this.add}
+                    onClick={this.addNew}
                     id='add'
                 >
                     <FaPlus />
