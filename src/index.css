@@ -33,7 +33,7 @@ div.note {
   cursor: -webkit-grab;
   height: 150px;
   margin: 2px 0;
-  position: relative;
+  position: absolute;
   width: 150px;
 }
 
