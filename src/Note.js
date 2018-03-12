@@ -5,40 +5,44 @@ import FaFloppyO from 'react-icons/lib/fa/floppy-o';
 
 class Note extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             editing: false,
-        }
-        this.edit = this.edit.bind(this)
-        this.remove = this.remove.bind(this)
-        this.save = this.save.bind(this)
-        this.renderForm = this.renderForm.bind(this)
-        this.renderDisplay = this.renderDisplay.bind(this)
+        };
+        this.edit = this.edit.bind(this);
+        this.remove = this.remove.bind(this);
+        this.save = this.save.bind(this);
+        this.renderForm = this.renderForm.bind(this);
+        this.renderDisplay = this.renderDisplay.bind(this);
     }
 
     edit() {
         this.setState({
             editing: true,
-        })
+        });
     }
 
     remove() {
-        alert('removing note')
+        this.props.onRemove(this.props.index);
     }
 
-    save() {
-        alert(this.newText.value)
+    save(e) {
+        e.preventDefault();
+        this.props.onChange(this.newText.value, this.props.index);
+        this.setState({
+            editing: false,
+        });
     }
 
     renderForm() {
         return (
             <div className='note'>
-                <form>
-                    <textarea ref={ input => {this.newText= input} } />
-                    <button onClick={this.save}><FaFloppyO /></button>
+                <form onSubmit={this.save}>
+                    <textarea ref={ input => {this.newText= input;} } />
+                    <button id='save'><FaFloppyO /></button>
                 </form>
             </div>
-        )
+        );
     }
 
     renderDisplay() {
@@ -50,14 +54,14 @@ class Note extends Component {
                     <button onClick={this.remove} id="remove"><FaTrash /></button>
                 </span>
             </div>
-        )
+        );
     }
 
     render() {
         return this.state.editing ?
             this.renderForm()
-            : this.renderDisplay()
+            : this.renderDisplay();
     }
 }
 
-export default Note
+export default Note;
