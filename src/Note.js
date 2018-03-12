@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Draggable from 'react-draggable';
 import FaPencil from 'react-icons/lib/fa/pencil';
 import FaTrash from 'react-icons/lib/fa/trash';
 import FaFloppyO from 'react-icons/lib/fa/floppy-o';
@@ -65,27 +66,35 @@ class Note extends Component {
 
     renderForm() {
         return (
-            <div className='note' style={this.style}>
-                <form onSubmit={this.save}>
-                    <textarea
-                        ref={ input => {this.newText= input;} }
-                        defaultValue={this.props.children}
-                    />
-                    <button id='save'><FaFloppyO /></button>
-                </form>
-            </div>
+            <Draggable>
+                <div>
+                    <div className='note' style={this.style}>
+                        <form onSubmit={this.save}>
+                            <textarea
+                                ref={ input => {this.newText= input;} }
+                                defaultValue={this.props.children}
+                            />
+                            <button id='save'><FaFloppyO /></button>
+                        </form>
+                    </div>
+                </div>
+            </Draggable>
         );
     }
 
     renderDisplay() {
         return (
-            <div className='note' style={this.style}>
-                <p>{this.props.children}</p>
-                <span>
-                    <button onClick={this.edit} id='edit'><FaPencil /></button>
-                    <button onClick={this.remove} id='remove'><FaTrash /></button>
-                </span>
-            </div>
+            <Draggable>
+                <div>
+                    <div className='note' style={this.style}>
+                        <p>{this.props.children}</p>
+                        <span>
+                            <button onClick={this.edit} id='edit'><FaPencil /></button>
+                            <button onClick={this.remove} id='remove'><FaTrash /></button>
+                        </span>
+                    </div>
+                </div>
+            </Draggable>
         );
     }
 
