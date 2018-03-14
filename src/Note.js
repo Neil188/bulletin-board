@@ -66,15 +66,20 @@ class Note extends Component {
 
     renderForm() {
         return (
-            <Draggable>
+            <Draggable disabled='true'>
                 <div>
                     <div className='note' style={this.style}>
                         <form onSubmit={this.save}>
                             <textarea
                                 ref={ input => {this.newText= input;} }
                                 defaultValue={this.props.children}
+                                maxLength={40}
+                                cols={18}
+                                rows={3}
                             />
-                            <button id='save'><FaFloppyO /></button>
+                            <button id='save'>
+                                <FaFloppyO />
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -89,8 +94,18 @@ class Note extends Component {
                     <div className='note' style={this.style}>
                         <p>{this.props.children}</p>
                         <span>
-                            <button onClick={this.edit} id='edit'><FaPencil /></button>
-                            <button onClick={this.remove} id='remove'><FaTrash /></button>
+                            <button
+                                onClick={this.edit}
+                                id='edit'
+                            >
+                                <FaPencil />
+                            </button>
+                            <button
+                                onClick={this.remove}
+                                id='remove'
+                            >
+                                <FaTrash />
+                            </button>
                         </span>
                     </div>
                 </div>
