@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "gh-pages": "^1.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-draggable": "^3.0.5",
@@ -14,7 +15,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "serve": "npx serve -s build"
+    "serve": "npx serve -s build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
@@ -35,6 +38,7 @@
     "type": "git",
     "url": "https://github.com/Neil188/bulletin-board.git"
   },
+  "homepage": "https://Neil188.github.io/bulletin-board",
   "stylelint": {
     "extends": "stylelint-config-standard",
     "plugins": [
