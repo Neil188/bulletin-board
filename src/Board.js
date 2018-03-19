@@ -16,17 +16,39 @@ export default class Board extends Component {
     }
 
     componentWillMount() {
-        const self = this;
-        if (this.props.count) {
-            fetch(`https://baconipsum.com/api/?type=all-meat&sentences=${this.props.count}`)
-                .then(res => res.json())
-                .then(json => json[0]
-                    .split('. ')
-                    .forEach( sentence =>
-                        self.add(sentence.substring(0,25))
-                    )
-                );
+        try {
+            const retrieveNotes =
+                JSON.parse(localStorage.getItem('bulletin-board'));
+
+            if (retrieveNotes) {
+                this.setState( () => ({
+                    notes: [ ...retrieveNotes ],
+                }));
+                return;
+            }
+            console.log('Notes found', retrieveNotes);
+        } catch (e) {
+            console.error('some kind of error ', e);
         }
+
+        // No notes retrieved from local storage so get some examples
+        const self = this;
+        fetch(`https://baconipsum.com/api/?type=all-meat&sentences=5`)
+            .then(res => res.json())
+            .then(json => json[0]
+                .split('. ')
+                .forEach( sentence =>
+                    self.add(sentence.substring(0,25))
+                )
+            );
+    }
+
+    componentDidUpdate() {
+        const { notes } = this.state;
+
+        const json = JSON.stringify(notes);
+        localStorage.setItem('bulletin-board', json);
+
     }
 
     add(text) {
