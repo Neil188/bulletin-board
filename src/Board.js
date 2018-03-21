@@ -3,17 +3,10 @@ import FaPlus from 'react-icons/lib/fa/plus';
 import Note from './Note';
 
 export default class Board extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            notes: [],
-        };
-        this.eachNote = this.eachNote.bind(this);
-        this.update = this.update.bind(this);
-        this.remove = this.remove.bind(this);
-        this.add = this.add.bind(this);
-        this.addNew = this.add.bind(this, 'New Note');
-    }
+
+    state = {
+        notes: [],
+    };
 
     componentWillMount() {
         try {
@@ -21,9 +14,9 @@ export default class Board extends Component {
                 JSON.parse(localStorage.getItem('bulletin-board'));
 
             if (retrieveNotes) {
-                this.setState( () => ({
-                    notes: [ ...retrieveNotes ],
-                }));
+                retrieveNotes.forEach( x =>
+                    this.add(x.note)
+                );
                 return;
             }
             console.log('Notes found', retrieveNotes);
@@ -51,7 +44,7 @@ export default class Board extends Component {
 
     }
 
-    add(text) {
+    add = (text) => {
         this.setState(prevState => ({
             notes: [
                 ...prevState.notes,
@@ -61,36 +54,34 @@ export default class Board extends Component {
                 },
             ],
         }));
-
     }
 
-    eachNote(note,i) {
-        return (
-            <Note
-                key={note.id}
-                index={note.id}
-                onChange={this.update}
-                onRemove={this.remove}
-            >
-                {note.note}
-            </Note>
-        );
-    }
+    addNew = () => this.add('New Note')
 
-    nextId() {
+    eachNote = (note,i) => (
+        <Note
+            key={note.id}
+            index={note.id}
+            onChange={this.update}
+            onRemove={this.remove}
+        >
+            {note.note}
+        </Note>
+    )
+
+    nextId = () => {
         this.uniqueId = this.uniqueId || 0;
         return this.uniqueId++;
     }
 
-    remove(id){
+    remove = (id) =>
         this.setState( prevState => ({
             notes: prevState.notes.filter(note =>
                 note.id !== id
             ),
         }));
-    }
 
-    update(newText, i) {
+    update = (newText, i) =>
         this.setState( prevState => ({
             notes: prevState.notes.map(
                 note => note.id !== i ?
@@ -98,7 +89,6 @@ export default class Board extends Component {
                     : {...note, note: newText}
             ),
         }) );
-    }
 
     render() {
         return (
