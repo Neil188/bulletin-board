@@ -19,21 +19,16 @@ export default class Board extends Component {
                 );
                 return;
             }
-            console.log('Notes found', retrieveNotes);
         } catch (e) {
             console.error('some kind of error ', e);
         }
 
         // No notes retrieved from local storage so get some examples
-        const self = this;
-        fetch(`https://baconipsum.com/api/?type=all-meat&sentences=5`)
-            .then(res => res.json())
-            .then(json => json[0]
-                .split('. ')
-                .forEach( sentence =>
-                    self.add(sentence.substring(0,25))
-                )
-            );
+        try {
+            this.fetchBacon();
+        } catch (e) {
+            console.error('some kind of error ', e);
+        }
     }
 
     componentDidUpdate() {
@@ -89,6 +84,16 @@ export default class Board extends Component {
                     : {...note, note: newText}
             ),
         }) );
+
+    fetchBacon = async () => {
+        const data = await fetch(`https://baconipsum.com/api/?type=all-meat&sentences=5`);
+        const json = await data.json();
+        json[0]
+            .split('. ')
+            .forEach( sentence =>
+                this.add(sentence.substring(0,25))
+            );
+    }
 
     render() {
         return (
