@@ -66,7 +66,10 @@ class Note extends Component {
                             cols={18}
                             rows={3}
                         />
-                        <button id='save'>
+                        <button
+                            className='save'
+                            aria-label='save'
+                        >
                             <FaFloppyO />
                         </button>
                     </form>
@@ -83,13 +86,15 @@ class Note extends Component {
                     <span>
                         <button
                             onClick={this.edit}
-                            id='edit'
+                            className='edit'
+                            aria-label='edit'
                         >
                             <FaPencil />
                         </button>
                         <button
                             onClick={this.remove}
-                            id='remove'
+                            className='remove'
+                            aria-label='remove'
                         >
                             <FaTrash />
                         </button>

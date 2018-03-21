@@ -102,6 +102,7 @@ export default class Board extends Component {
                 <button
                     onClick={this.addNew}
                     id='add'
+                    aria-label='add'
                 >
                     <FaPlus />
                 </button>

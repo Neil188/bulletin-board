@@ -85,14 +85,14 @@ div.board button {
   height: 3em;
 }
 
-#edit {
+.edit {
   background-color: #337ab7;
 }
 
-#save {
+.save {
   background-color: #5cb85c;
 }
 
-#remove {
+.remove {
   background-color: #d9534f;
 }
