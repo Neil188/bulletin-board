@@ -63,8 +63,7 @@ class Note extends Component {
                             ref={ input => {this.newText= input;} }
                             defaultValue={this.props.children}
                             maxLength={40}
-                            cols={18}
-                            rows={3}
+                            rows={4}
                         />
                         <button
                             className='save'

@@ -5,6 +5,17 @@
   --bg-color-end: #4c7554;
 }
 
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
 body,
 html,
 div.board,
@@ -27,7 +38,7 @@ div.board {
   background: -ms-radial-gradient(center, ellipse cover, var(--bg-color-start) 57%, var(--bg-color-end) 99%);
   background: radial-gradient(ellipse at center, var(--bg-color-start) 57%, var(--bg-color-end) 99%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='var(--bg-color-start)', endColorstr='var(--bg-color-end)', GradientType=1);
-  height: 1000px;
+  height: 100vh;
   width: 100%;
 }
 
@@ -36,11 +47,11 @@ div.note {
   -webkit-box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.2);
   cursor: -webkit-grab;
-  height: 150px;
-  margin: 2px 0;
+  height: 16rem;
+  margin: 0.2rem 0;
   overflow-wrap: break-word;
   position: absolute;
-  width: 150px;
+  width: 16rem;
 }
 
 div.note:active {
@@ -49,15 +60,16 @@ div.note:active {
 
 div.note p {
   font-family: "Shadows Into Light", Arial, sans-serif;
-  font-size: 22px;
-  padding: 5px;
+  font-size: 2.5rem;
+  margin: 0;
+  padding: 0.5rem;
 }
 
 div.note > span {
-  bottom: 2px;
+  bottom: 0.2rem;
   opacity: 0;
   position: absolute;
-  right: 2px;
+  right: 0.2rem;
   transition: opacity 0.25s linear;
 }
 
@@ -66,23 +78,26 @@ div.note:hover > span {
 }
 
 div.note button {
-  margin: 2px;
+  margin: 0.2rem 0.4rem;
 }
 
-div.note > textarea {
+div.note textarea {
   background: rgba(255, 255, 255, 0.5);
+  font-size: 2.5rem;
   height: 75%;
+  width: 100%;
 }
 
 div.board button {
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.55);
   color: #fff;
-  font-size: 14px;
+  font-size: 2rem;
 }
 
 #add {
   background-color: #5cb85c;
   height: 3em;
+  width: 3em;
 }
 
 .edit {
