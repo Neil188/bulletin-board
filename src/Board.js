@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import FaPlus from 'react-icons/lib/fa/plus';
 import Note from './Note';
 
@@ -9,6 +10,14 @@ export default class Board extends Component {
     };
 
     componentWillMount() {
+        const {notes} = this.props;
+        if (notes.length > 0) {
+            notes.map( ({note}) =>
+                this.add(note)
+            );
+            return;
+        }
+
         try {
             const retrieveNotes =
                 JSON.parse(localStorage.getItem('bulletin-board'));
@@ -59,6 +68,7 @@ export default class Board extends Component {
             index={note.id}
             onChange={this.update}
             onRemove={this.remove}
+            test={this.props.test}
         >
             {note.note}
         </Note>
@@ -110,3 +120,16 @@ export default class Board extends Component {
         );
     }
 }
+
+Board.defaultProps = {
+    notes: [],
+    test: false,
+};
+
+Board.propTypes = {
+    notes: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number,
+        note: PropTypes.string,
+    })),
+    test: PropTypes.bool,
+};

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Draggable from 'react-draggable';
 import FaPencil from 'react-icons/lib/fa/pencil';
 import FaTrash from 'react-icons/lib/fa/trash';
@@ -41,7 +42,7 @@ class Note extends Component {
     }
 
     randomBetween = (x, y, s) =>
-        x + Math.ceil( Math.random() * (y-x) ) + s;
+        this.props.test ? 0 : x + Math.ceil( Math.random() * (y-x) ) + s;
 
     remove = () =>
         this.props.onRemove(this.props.index);
@@ -109,5 +110,13 @@ class Note extends Component {
             : this.renderDisplay();
     }
 }
+
+Note.propTypes = {
+    index: PropTypes.number.isRequired,
+    children: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onRemove: PropTypes.func.isRequired,
+    test: PropTypes.bool.isRequired,
+};
 
 export default Note;
