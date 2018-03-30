@@ -11,7 +11,6 @@
     -->
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
   <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.png">
-  <link rel="preload" href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" as="font">
   <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -31,6 +30,15 @@
     You need to enable JavaScript to run this app.
   </noscript>
   <div id="root"></div>
+  <style>
+    @font-face {
+      font-family: 'Shadows Into Light';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Shadows Into Light'), local('ShadowsIntoLight'), url(https://fonts.gstatic.com/s/shadowsintolight/v7/UqyNK9UOIntux_czAvDQx_ZcHqZXBNQzdcD5.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+  </style>
   <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
