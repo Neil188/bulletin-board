@@ -10,14 +10,6 @@ export default class Board extends Component {
     };
 
     componentWillMount() {
-        const {notes} = this.props;
-        if (notes.length > 0) {
-            notes.map( ({note}) =>
-                this.add(note)
-            );
-            return;
-        }
-
         try {
             const retrieveNotes =
                 JSON.parse(localStorage.getItem('bulletin-board'));
@@ -45,8 +37,8 @@ export default class Board extends Component {
 
         const json = JSON.stringify(notes);
         localStorage.setItem('bulletin-board', json);
-
     }
+
 
     add = (text) => {
         this.setState(prevState => ({
@@ -98,7 +90,7 @@ export default class Board extends Component {
     fetchBacon = async () => {
         const data = await fetch(`https://baconipsum.com/api/?type=all-meat&sentences=5`);
         const json = await data.json();
-        json[0]
+        return json[0]
             .split('. ')
             .forEach( sentence =>
                 this.add(sentence.substring(0,25))
@@ -122,14 +114,9 @@ export default class Board extends Component {
 }
 
 Board.defaultProps = {
-    notes: [],
     test: false,
 };
 
 Board.propTypes = {
-    notes: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number,
-        note: PropTypes.string,
-    })),
     test: PropTypes.bool,
 };
