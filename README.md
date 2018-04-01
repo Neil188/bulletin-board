@@ -18,6 +18,12 @@ A simple bulletin board application using create-react-app to get started.
 
     `npm install`
 
+4. Run tests:
+
+    `npm test`
+
+    Use option `a` to run all tests.  If snapshots do not match as a result of changes that have been made use option `u` to update the snapshot.
+
 3. Start dev server using:
 
     `npm run start`
@@ -36,6 +42,8 @@ Built on:
 * npm v5.6.0
 * React v16
 * React scripts v1.1
+* Jest v20.0.4
+* React test renderer v16.3.0
 
 * Create React App
 * GitHub Pages
