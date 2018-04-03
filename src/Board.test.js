@@ -1,7 +1,80 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
 import ReactDOM from 'react-dom';
-import Board from './Board';
+import Board, { nextId, addToArray, removeFromArray, updateArray } from './Board';
+
+describe('function tests', () => {
+    describe('Next Id tests', () => {
+        test('prev = Undefined', () => {
+            expect(nextId()).toBe(1);
+        });
+
+        test('prev = 1', () => {
+            expect(nextId(1)).toBe(2);
+        });
+    });
+
+    describe('Add to Array tests', () => {
+
+        test('Add to empty array', () => {
+            const result = addToArray('Test1', 1)({});
+            expect(result.notes).toHaveLength(1);
+            expect(result.notes[0].note).toBe('Test1');
+        });
+
+        test('Add to populated array', () => {
+            const prev = {notes:[{id:1, note:'Test1'}]};
+            const result = addToArray('Test2', 2)(prev);
+            expect(result.notes).toHaveLength(2);
+            expect(result.notes[1].note).toBe('Test2');
+        });
+    });
+
+    describe('Remove Array tests', () => {
+
+        test('Remove from empty array', () => {
+            const prev = {};
+            const result = removeFromArray(1)(prev);
+            expect(result.notes).toHaveLength(0);
+        });
+
+        test('Remove from populated array (id found)', () => {
+            const prev = {notes:[{id:1, note:'Test1'}]};
+            const result = removeFromArray(1)(prev);
+            expect(result.notes).toHaveLength(0);
+        });
+
+        test('Remove from populated array (id not found)', () => {
+            const prev = {notes:[{id:1, note:'Test1'}]};
+            const result = removeFromArray(2)(prev);
+            expect(result.notes).toHaveLength(1);
+        });
+    });
+
+    describe('Update Array tests', () => {
+
+        test('Update empty array', () => {
+            const prev = {};
+            const result = updateArray('Test', 1)(prev);
+            expect(result.notes).toHaveLength(0);
+        });
+
+        test('Update populated array (id found)', () => {
+            const prev = {notes:[{id:1, note:'Test1'}]};
+            const result = updateArray('Update', 1)(prev);
+            expect(result.notes).toHaveLength(1);
+            expect(result.notes[0].note).toBe('Update');
+        });
+
+        test('Update populated array (id not found)', () => {
+            const prev = {notes:[{id:1, note:'Not changed'}]};
+            const result = updateArray('Update', 2)(prev);
+            expect(result.notes).toHaveLength(1);
+            expect(result.notes[0].note).toBe('Not changed');
+        });
+    });
+
+});
 
 class LocalStorageMock {
     constructor() {

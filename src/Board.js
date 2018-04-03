@@ -3,6 +3,35 @@ import PropTypes from 'prop-types';
 import FaPlus from 'react-icons/lib/fa/plus';
 import Note from './Note';
 
+export const nextId = ( prev ) => {
+    const next = (prev || 0) + 1;
+    return next;
+};
+
+export const addToArray = (value, id) => ({ notes=[] }) => ({
+    notes: [
+        ...notes,
+        {
+            id,
+            note: value,
+        },
+    ],
+});
+
+export const removeFromArray = (id) => ({ notes=[] }) => ({
+    notes: notes.filter(note =>
+        note.id !== id
+    ),
+});
+
+export const updateArray = (newText, i) => ({ notes=[] }) => ({
+    notes: notes.map(
+        note => note.id !== i ?
+            note
+            : {...note, note: newText}
+    ),
+});
+
 export default class Board extends Component {
 
     state = {
@@ -41,15 +70,9 @@ export default class Board extends Component {
 
 
     add = (text) => {
-        this.setState(prevState => ({
-            notes: [
-                ...prevState.notes,
-                {
-                    id: this.nextId(),
-                    note: text,
-                },
-            ],
-        }));
+        this.uniqueId = nextId(this.uniqueId);
+        const addNote = addToArray(text, this.uniqueId);
+        this.setState(addNote);
     }
 
     addNew = () => this.add('New Note')
@@ -66,26 +89,15 @@ export default class Board extends Component {
         </Note>
     )
 
-    nextId = () => {
-        this.uniqueId = this.uniqueId || 0;
-        return this.uniqueId++;
+    remove = (id) => {
+        const removeNote = removeFromArray(id);
+        this.setState(removeNote);
     }
 
-    remove = (id) =>
-        this.setState( prevState => ({
-            notes: prevState.notes.filter(note =>
-                note.id !== id
-            ),
-        }));
-
-    update = (newText, i) =>
-        this.setState( prevState => ({
-            notes: prevState.notes.map(
-                note => note.id !== i ?
-                    note
-                    : {...note, note: newText}
-            ),
-        }) );
+    update = (newText, i) => {
+        const updateNote = updateArray(newText, i);
+        this.setState( updateNote );
+    }
 
     fetchBacon = async () => {
         const data = await fetch(`https://baconipsum.com/api/?type=all-meat&sentences=5`);
