@@ -5,6 +5,9 @@ import FaPencil from 'react-icons/lib/fa/pencil';
 import FaTrash from 'react-icons/lib/fa/trash';
 import FaFloppyO from 'react-icons/lib/fa/floppy-o';
 
+export const calcRandomBetween = test => (x, y, s) =>
+    test ? 0 : x + Math.ceil( Math.random() * (y-x) ) + s;
+
 class Note extends Component {
 
     state = {
@@ -12,6 +15,7 @@ class Note extends Component {
     };
 
     componentWillMount() {
+        this.randomBetween = calcRandomBetween(this.props.test);
         this.style = {
             right: this.randomBetween(0, window.innerWidth - 150, 'px'),
             top: this.randomBetween(0, window.innerHeight - 150, 'px'),
@@ -36,13 +40,10 @@ class Note extends Component {
     }
 
     edit = () => {
-        this.setState({
+        this.setState(() => ({
             editing: true,
-        });
+        }));
     }
-
-    randomBetween = (x, y, s) =>
-        this.props.test ? 0 : x + Math.ceil( Math.random() * (y-x) ) + s;
 
     remove = () =>
         this.props.onRemove(this.props.index);
@@ -50,9 +51,9 @@ class Note extends Component {
     save = (e) => {
         e.preventDefault();
         this.props.onChange(this.newText.value, this.props.index);
-        this.setState({
+        this.setState(() => ({
             editing: false,
-        });
+        }));
     }
 
     renderForm = () => (
