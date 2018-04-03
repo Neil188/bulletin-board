@@ -27,14 +27,15 @@ describe('Board snapshots', () => {
         );
         let tree = component.toJSON();
         expect(tree).toMatchSnapshot();
+        const testInstance = component.root;
 
         // trigger add button
-        tree.children[1].props.onClick();
+        testInstance.findByProps({id:'add'}).props.onClick();
         tree = component.toJSON();
         expect(tree).toMatchSnapshot();
 
         // trigger remove on first note
-        tree.children[0].children[0].children[1].children[1].props.onClick();
+        testInstance.findAllByProps({className:'remove'})[0].props.onClick();
         tree = component.toJSON();
         expect(tree).toMatchSnapshot();
     });
