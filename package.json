@@ -51,5 +51,15 @@
       "order/properties-alphabetical-order": true,
       "function-name-case": null
     }
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.{js}",
+      "!**/node_modules/**",
+      "!**/coverage/**",
+      "!build/**",
+      "!src/index.js",
+      "!src/registerServiceWorker.js"
+    ]
   }
 }
