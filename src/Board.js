@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FaPlus from 'react-icons/lib/fa/plus';
 import Note from './Note';
+import defaultNoteData from './data.json';
 
 export const nextId = ( prev ) => {
     const next = (prev || 0) + 1;
@@ -32,13 +33,22 @@ export const updateArray = (newText, i) => ({ notes=[] }) => ({
     ),
 });
 
+export const getRandomNotes = ( count , { noteData }) => {
+    let result = [];
+    for (let x=count; x>0; x--) {
+        const random = Math.floor(Math.random() * noteData.length);
+        result = [...result, noteData[random] ];
+    }
+    return result;
+};
+
 export default class Board extends Component {
 
     state = {
         notes: [],
     };
 
-    componentWillMount() {
+    componentDidMount() {
         try {
             const retrieveNotes =
                 JSON.parse(localStorage.getItem('bulletin-board'));
@@ -47,23 +57,23 @@ export default class Board extends Component {
                 retrieveNotes.forEach( x =>
                     this.add(x.note)
                 );
+
                 return;
+            }
+
+            if (defaultNoteData) {
+                getRandomNotes(5,defaultNoteData).forEach( x =>
+                    this.add(x)
+                );
             }
         } catch (e) {
             console.error('some kind of error ', e);
         }
 
-        // No notes retrieved from local storage so get some examples
-        try {
-            this.fetchBacon();
-        } catch (e) {
-            console.error('some kind of error ', e);
-        }
     }
 
     componentDidUpdate() {
         const { notes } = this.state;
-
         const json = JSON.stringify(notes);
         localStorage.setItem('bulletin-board', json);
     }
@@ -97,16 +107,6 @@ export default class Board extends Component {
     update = (newText, i) => {
         const updateNote = updateArray(newText, i);
         this.setState( updateNote );
-    }
-
-    fetchBacon = async () => {
-        const data = await fetch(`https://baconipsum.com/api/?type=all-meat&sentences=5`);
-        const json = await data.json();
-        return json[0]
-            .split('. ')
-            .forEach( sentence =>
-                this.add(sentence.substring(0,25))
-            );
     }
 
     render() {
