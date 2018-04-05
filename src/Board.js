@@ -33,7 +33,7 @@ export const updateArray = (newText, i) => ({ notes=[] }) => ({
     ),
 });
 
-export const getRandomNotes = ( count , { noteData }) => {
+export const getRandomNotes = ( count = 0 , { noteData = [] } = {}) => {
     let result = [];
     for (let x=count; x>0; x--) {
         const random = Math.floor(Math.random() * noteData.length);
