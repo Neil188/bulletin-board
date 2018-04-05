@@ -142,4 +142,24 @@ describe('Check for render failures', () => {
             <Board test />
             , div);
     });
+
+    test('renders valid data without localStorage entries', () => {
+        // empty the localStorage object so new notes are generated
+        localStorage.clear();
+        const component = create(
+            <Board test />,
+        );
+
+        // get notes from state by destructuring component
+        const { root: {_fiber : {stateNode: {state: {notes}}}}} = component;
+        expect(notes).toHaveLength(5);
+        expect(Array.isArray(notes)).toBe(true);
+        expect(notes[0]).toHaveProperty('id');
+        expect(notes[0]).toHaveProperty('note');
+
+        expect(typeof notes[0].id).toBe('number');
+        expect(typeof notes[0].note).toBe('string');
+
+    });
+
 });
