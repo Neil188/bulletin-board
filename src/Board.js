@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FaPlus from 'react-icons/lib/fa/plus';
+import FaTrash from 'react-icons/lib/fa/trash';
 import Note from './Note';
 import defaultNoteData from './data.json';
 
@@ -87,6 +88,8 @@ export default class Board extends Component {
 
     addNew = () => this.add('New Note')
 
+    removeAll = () => this.setState( () => ({notes: []}))
+
     eachNote = (note,i) => (
         <Note
             key={note.id}
@@ -119,6 +122,13 @@ export default class Board extends Component {
                     aria-label='add'
                 >
                     <FaPlus />
+                </button>
+                <button
+                    onClick={this.removeAll}
+                    id='remove-all'
+                    aria-label='remove all'
+                >
+                    <FaTrash />
                 </button>
             </div>
         );

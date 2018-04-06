@@ -50,12 +50,6 @@ div.board button {
   font-size: 2rem;
 }
 
-#add {
-  background-color: #5cb85c;
-  height: 3em;
-  width: 3em;
-}
-
 .edit {
   background-color: #337ab7;
 }
