@@ -132,6 +132,11 @@ describe('Board snapshots', () => {
         testInstance.findAllByProps({className:'remove'})[0].props.onClick();
         tree = component.toJSON();
         expect(tree).toMatchSnapshot();
+
+        // trigger remove all button
+        testInstance.findByProps({id:'remove-all'}).props.onClick();
+        tree = component.toJSON();
+        expect(tree).toMatchSnapshot();
     });
 });
 
