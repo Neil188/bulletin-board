@@ -18,19 +18,19 @@ A simple bulletin board application using create-react-app to get started.
 
     `npm install`
 
-4. Run tests:
+3. Run tests:
 
     `npm test`
 
     Use option `a` to run all tests.  If snapshots do not match as a result of changes that have been made use option `u` to update the snapshot.
 
-3. Start dev server using:
+4. Start dev server using:
 
     `npm run start`
 
     This will start the development server, running the app at [localhost](http://localhost:3000/)
 
-4. To create a production build use:
+5. To create a production build use:
 
     `npm run build`
 
