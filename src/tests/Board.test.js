@@ -100,7 +100,7 @@ localStorage.setItem('bulletin-board', JSON.stringify([{"id":0, note:"test"}]));
 describe('Board snapshots', () => {
     test('Board snapshot test', () => {
         const component = create(
-            <Board test />,
+            <Board />,
         );
         let tree = component.toJSON();
         expect(tree).toMatchSnapshot();
@@ -127,7 +127,7 @@ describe('Check for render failures', () => {
     test('renders without crashing', () => {
         const div = document.createElement('div');
         ReactDOM.render(
-            <Board test />
+            <Board />
             , div);
     });
 
@@ -135,7 +135,7 @@ describe('Check for render failures', () => {
         // empty the localStorage object so new notes are generated
         localStorage.clear();
         const component = create(
-            <Board test />,
+            <Board />,
         );
 
         // get notes from state by destructuring component

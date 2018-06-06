@@ -13,11 +13,10 @@ class Note extends Component {
     };
 
     componentWillMount() {
-        this.randomBetween = calcRandomBetween(this.props.test);
         this.style = {
-            right: this.randomBetween(0, window.innerWidth - 150, 'px'),
-            top: this.randomBetween(0, window.innerHeight - 150, 'px'),
-            transform: `rotate( ${this.randomBetween(-25, 25, 'deg')} )`,
+            right: calcRandomBetween(0, window.innerWidth - 150, 'px'),
+            top: calcRandomBetween(0, window.innerHeight - 150, 'px'),
+            transform: `rotate( ${calcRandomBetween(-25, 25, 'deg')} )`,
         };
     }
 
@@ -115,7 +114,6 @@ Note.propTypes = {
     children: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     onRemove: PropTypes.func.isRequired,
-    test: PropTypes.bool.isRequired,
 };
 
 export default Note;

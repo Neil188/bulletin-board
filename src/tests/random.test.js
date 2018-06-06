@@ -23,12 +23,8 @@ describe('util function tests', () => {
 
 
     describe('calcRandomBetween tests', () => {
-        test('test return 0', () => {
-            expect(calcRandomBetween(true)(1,2,3)).toBe(0);
-        });
-
-        test('Non-test result', () => {
-            expect(calcRandomBetween(false)(0,0,'px')).toBe('0px');
+        test('Zero values test', () => {
+            expect(calcRandomBetween(0,0,'px')).toBe('0px');
         });
 
     });

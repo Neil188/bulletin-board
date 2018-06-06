@@ -6,4 +6,4 @@ export const getRandomNotes = ( count = 0 , { noteData = [] } = {} ) => {
     return result;
 };
 
-export const calcRandomBetween = () => (x, y, s) => 0;
+export const calcRandomBetween = (x, y, s) => 0;

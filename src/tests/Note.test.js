@@ -8,7 +8,7 @@ jest.mock('../utils/random');
 describe('Note snapshots', () => {
     test('Note snapshot test', () => {
         const component = create(
-            <Note index={0} onChange={() => null} onRemove={() => null} test>
+            <Note index={0} onChange={() => null} onRemove={() => null}>
                 Test
             </Note>,
             {
@@ -40,7 +40,7 @@ describe('Check for render failures', () => {
     it('renders without crashing', () => {
         const div = document.createElement('div');
         ReactDOM.render(
-            <Note index={0} onChange={() => null} onRemove={() => null} test>
+            <Note index={0} onChange={() => null} onRemove={() => null}>
                 Test
             </Note>
             , div);

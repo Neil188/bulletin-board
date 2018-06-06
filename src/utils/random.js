@@ -7,5 +7,5 @@ export const getRandomNotes = ( count = 0 , { noteData = [] } = {}) => {
     return result;
 };
 
-export const calcRandomBetween = test => (x, y, s) =>
-    test ? 0 : x + Math.ceil( Math.random() * (y-x) ) + s;
+export const calcRandomBetween = (x, y, s) =>
+    x + Math.ceil( Math.random() * (y-x) ) + s;

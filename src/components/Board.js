@@ -88,7 +88,6 @@ export default class Board extends Component {
             index={note.id}
             onChange={this.update}
             onRemove={this.remove}
-            test={this.props.test}
         >
             {note.note}
         </Note>
@@ -126,11 +125,3 @@ export default class Board extends Component {
         );
     }
 }
-
-Board.defaultProps = {
-    test: false,
-};
-
-Board.propTypes = {
-    test: PropTypes.bool,
-};
