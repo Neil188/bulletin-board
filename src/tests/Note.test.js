@@ -1,7 +1,7 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
 import ReactDOM from 'react-dom';
-import Note, { calcRandomBetween } from './Note';
+import Note, { calcRandomBetween } from '../components/Note';
 
 describe('function tests', () => {
     describe('calcRandomBetween tests', () => {

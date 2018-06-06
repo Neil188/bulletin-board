@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import FaPlus from 'react-icons/lib/fa/plus';
 import FaTrash from 'react-icons/lib/fa/trash';
 import Note from './Note';
-import defaultNoteData from './data.json';
+import defaultNoteData from '../data/data.json';
 
 export const nextId = ( prev ) => {
     const next = (prev || 0) + 1;

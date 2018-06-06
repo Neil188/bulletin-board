@@ -3,7 +3,7 @@ import { create } from 'react-test-renderer';
 import ReactDOM from 'react-dom';
 import Board, {
     nextId, addToArray, removeFromArray, updateArray, getRandomNotes,
-} from './Board';
+} from '../components/Board';
 
 describe('function tests', () => {
     describe('Next Id tests', () => {
