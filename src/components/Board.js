@@ -4,6 +4,7 @@ import FaPlus from 'react-icons/lib/fa/plus';
 import FaTrash from 'react-icons/lib/fa/trash';
 import Note from './Note';
 import defaultNoteData from '../data/data.json';
+import { getRandomNotes } from '../utils/random';
 
 export const nextId = ( prev ) => {
     const next = (prev || 0) + 1;
@@ -33,15 +34,6 @@ export const updateArray = (newText, i) => ({ notes=[] }) => ({
             : {...note, note: newText}
     ),
 });
-
-export const getRandomNotes = ( count = 0 , { noteData = [] } = {}) => {
-    let result = [];
-    for (let x=count; x>0; x--) {
-        const random = Math.floor(Math.random() * noteData.length);
-        result = [...result, noteData[random] ];
-    }
-    return result;
-};
 
 export default class Board extends Component {
 

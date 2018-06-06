@@ -4,9 +4,7 @@ import Draggable from 'react-draggable';
 import FaPencil from 'react-icons/lib/fa/pencil';
 import FaTrash from 'react-icons/lib/fa/trash';
 import FaFloppyO from 'react-icons/lib/fa/floppy-o';
-
-export const calcRandomBetween = test => (x, y, s) =>
-    test ? 0 : x + Math.ceil( Math.random() * (y-x) ) + s;
+import { calcRandomBetween } from '../utils/random';
 
 class Note extends Component {
 
