@@ -8,6 +8,7 @@ describe('util function tests', () => {
             const test = {noteData : ['1', '2', '3']};
             const length = 2;
             const result = getRandomNotes(length, test);
+
             expect(result).toHaveLength(2);
             expect(Array.isArray(result)).toBe(true);
             expect(typeof result[0]).toBe('string');
@@ -27,7 +28,7 @@ describe('util function tests', () => {
         });
 
         test('Non-test result', () => {
-            expect(calcRandomBetween(false)(0,0,3)).toBe(3);
+            expect(calcRandomBetween(false)(0,0,'px')).toBe('0px');
         });
 
     });
