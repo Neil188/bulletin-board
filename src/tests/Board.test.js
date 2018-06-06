@@ -1,9 +1,14 @@
 import React from 'react';
-import { create } from 'react-test-renderer';
-import ReactDOM from 'react-dom';
+import Enzyme, { shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import Board, {
     nextId, addToArray, removeFromArray, updateArray,
 } from '../components/Board';
+import testData from '../data/data.json';
+
+Enzyme.configure({
+    adapter: new Adapter(),
+});
 
 jest.mock('../utils/random');
 
@@ -98,67 +103,66 @@ global.localStorage = new LocalStorageMock;
 
 describe('Board snapshots with no local storage', () => {
     test('Board snapshot test', () => {
-        const component = create(
+        const wrapper = shallow(
             <Board />,
         );
-        const tree = component.toJSON();
-        expect(tree).toMatchSnapshot();
+        expect(wrapper).toMatchSnapshot();
+    });
+
+    test('Validate note data', () => {
+        const wrapper = shallow(
+            <Board />,
+        );
+        expect(wrapper.state('notes')).toHaveLength(5);
+        expect(wrapper.state('notes')[0]).toEqual({
+            id: 1,
+            note: testData.noteData[0],
+        });
     });
 });
 
 describe('With mock local storage', () => {
-    localStorage.setItem('bulletin-board', JSON.stringify([{"id":0, note:"test"}]));
+    const testNotes = [
+        {
+            "id":1,
+            note:"test",
+        },
+        {
+            "id":2,
+            note:"New Note",
+        },
+    ];
+    let wrapper;
+
+    beforeEach( () => {
+        localStorage.setItem(
+            'bulletin-board',
+            JSON.stringify([testNotes[0]])
+        );
+        wrapper = shallow(
+            <Board />,
+        );
+    });
 
     test('Board snapshot test', () => {
-        const component = create(
-            <Board />,
-        );
-        let tree = component.toJSON();
-        expect(tree).toMatchSnapshot();
-        const testInstance = component.root;
-
-        // trigger add button
-        testInstance.findByProps({id:'add'}).props.onClick();
-        tree = component.toJSON();
-        expect(tree).toMatchSnapshot();
-
-        // trigger remove on first note
-        testInstance.findAllByProps({className:'remove'})[0].props.onClick();
-        tree = component.toJSON();
-        expect(tree).toMatchSnapshot();
-
-        // trigger remove all button
-        testInstance.findByProps({id:'remove-all'}).props.onClick();
-        tree = component.toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-});
-
-describe('Check for render failures', () => {
-    test('renders without crashing', () => {
-        const div = document.createElement('div');
-        ReactDOM.render(
-            <Board />
-            , div);
+        expect(wrapper).toMatchSnapshot();
     });
 
-    test('renders valid data without localStorage entries', () => {
-        // empty the localStorage object so new notes are generated
-        localStorage.clear();
-        const component = create(
-            <Board />,
-        );
-
-        // get notes from state by destructuring component
-        const { root: {_fiber : {stateNode: {state: {notes}}}}} = component;
-        expect(notes).toHaveLength(5);
-        expect(Array.isArray(notes)).toBe(true);
-        expect(notes[0]).toHaveProperty('id');
-        expect(notes[0]).toHaveProperty('note');
-
-        expect(typeof notes[0].id).toBe('number');
-        expect(typeof notes[0].note).toBe('string');
-
+    test('validate note data', () => {
+        expect(wrapper.state('notes')).toHaveLength(1);
+        expect(wrapper.state('notes')[0]).toEqual(testNotes[0]);
     });
 
+    test('test buttons', () => {
+        test('Add note', () => {
+            wrapper.find('button').at(0).simulate('click');
+            expect(wrapper.state('notes')).toHaveLength(2);
+            expect(wrapper.state('notes')).toEqual(testNotes);
+        });
+
+        test('Remove all notes', () => {
+            wrapper.find('button').at(1).simulate('click');
+            expect(wrapper.state('notes')).toHaveLength(0);
+        });
+    });
 });
