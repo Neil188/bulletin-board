@@ -5,6 +5,8 @@ import Board, {
     nextId, addToArray, removeFromArray, updateArray,
 } from '../components/Board';
 
+jest.mock('../utils/random');
+
 describe('function tests', () => {
     describe('Next Id tests', () => {
         test('prev = Undefined', () => {

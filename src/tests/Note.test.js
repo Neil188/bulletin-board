@@ -3,6 +3,8 @@ import { create } from 'react-test-renderer';
 import ReactDOM from 'react-dom';
 import Note from '../components/Note';
 
+jest.mock('../utils/random');
+
 describe('Note snapshots', () => {
     test('Note snapshot test', () => {
         const component = create(
