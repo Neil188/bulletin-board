@@ -2,15 +2,6 @@
   "name": "bulletin-board",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "gh-pages": "^1.1.0",
-    "prop-types": "^15.6.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-draggable": "^3.0.5",
-    "react-icons": "^2.2.7",
-    "react-scripts": "1.1.1"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -20,6 +11,15 @@
     "serve": "npx serve -s build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
+  },
+  "dependencies": {
+    "gh-pages": "^1.1.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-draggable": "^3.0.5",
+    "react-icons": "^2.2.7",
+    "react-scripts": "1.1.1"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
