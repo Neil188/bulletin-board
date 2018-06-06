@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import FaPlus from 'react-icons/lib/fa/plus';
 import FaTrash from 'react-icons/lib/fa/trash';
 import Note from './Note';
