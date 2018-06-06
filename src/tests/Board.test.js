@@ -153,16 +153,35 @@ describe('With mock local storage', () => {
         expect(wrapper.state('notes')[0]).toEqual(testNotes[0]);
     });
 
-    test('test buttons', () => {
-        test('Add note', () => {
-            wrapper.find('button').at(0).simulate('click');
-            expect(wrapper.state('notes')).toHaveLength(2);
-            expect(wrapper.state('notes')).toEqual(testNotes);
-        });
 
-        test('Remove all notes', () => {
-            wrapper.find('button').at(1).simulate('click');
-            expect(wrapper.state('notes')).toHaveLength(0);
-        });
+    test('Add note', () => {
+        wrapper.find('button').at(0).simulate('click');
+        expect(wrapper.state('notes')).toHaveLength(2);
+        expect(wrapper.state('notes')).toEqual(testNotes);
+        expect(wrapper).toMatchSnapshot();
     });
+
+    test('Remove note', () => {
+        wrapper.find('button').at(0).simulate('click');
+        wrapper.find('Note').at(0).prop('onRemove')(1);
+        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.state('notes')).toHaveLength(1);
+    });
+
+    test('Update note', () => {
+        wrapper.find('Note').at(0).prop('onChange')('New text', 1);
+        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.state('notes')).toHaveLength(1);
+        expect(wrapper.state('notes')[0].note).toBe('New text');
+    });
+
+    test('Remove all notes', () => {
+        wrapper.find('button').at(0).simulate('click');
+        wrapper.find('button').at(0).simulate('click');
+        expect(wrapper.state('notes')).toHaveLength(3);
+        wrapper.find('button').at(1).simulate('click');
+        expect(wrapper.state('notes')).toHaveLength(0);
+        expect(wrapper).toMatchSnapshot();
+    });
+
 });

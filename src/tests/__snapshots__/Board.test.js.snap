@@ -61,7 +61,131 @@ exports[`Board snapshots with no local storage Board snapshot test 1`] = `
 </div>
 `;
 
+exports[`With mock local storage Add note 1`] = `
+<div
+  className="board"
+>
+  <Note
+    index={1}
+    key="1"
+    onChange={[Function]}
+    onRemove={[Function]}
+  >
+    test
+  </Note>
+  <Note
+    index={2}
+    key="2"
+    onChange={[Function]}
+    onRemove={[Function]}
+  >
+    New Note
+  </Note>
+  <button
+    aria-label="add"
+    id="add"
+    onClick={[Function]}
+  >
+    <FaPlus />
+  </button>
+  <button
+    aria-label="remove all"
+    id="remove-all"
+    onClick={[Function]}
+  >
+    <FaTrash />
+  </button>
+</div>
+`;
+
 exports[`With mock local storage Board snapshot test 1`] = `
+<div
+  className="board"
+>
+  <Note
+    index={1}
+    key="1"
+    onChange={[Function]}
+    onRemove={[Function]}
+  >
+    test
+  </Note>
+  <button
+    aria-label="add"
+    id="add"
+    onClick={[Function]}
+  >
+    <FaPlus />
+  </button>
+  <button
+    aria-label="remove all"
+    id="remove-all"
+    onClick={[Function]}
+  >
+    <FaTrash />
+  </button>
+</div>
+`;
+
+exports[`With mock local storage Remove all notes 1`] = `
+<div
+  className="board"
+>
+  <button
+    aria-label="add"
+    id="add"
+    onClick={[Function]}
+  >
+    <FaPlus />
+  </button>
+  <button
+    aria-label="remove all"
+    id="remove-all"
+    onClick={[Function]}
+  >
+    <FaTrash />
+  </button>
+</div>
+`;
+
+exports[`With mock local storage Remove note 1`] = `
+<div
+  className="board"
+>
+  <Note
+    index={1}
+    key="1"
+    onChange={[Function]}
+    onRemove={[Function]}
+  >
+    test
+  </Note>
+  <Note
+    index={2}
+    key="2"
+    onChange={[Function]}
+    onRemove={[Function]}
+  >
+    New Note
+  </Note>
+  <button
+    aria-label="add"
+    id="add"
+    onClick={[Function]}
+  >
+    <FaPlus />
+  </button>
+  <button
+    aria-label="remove all"
+    id="remove-all"
+    onClick={[Function]}
+  >
+    <FaTrash />
+  </button>
+</div>
+`;
+
+exports[`With mock local storage Update note 1`] = `
 <div
   className="board"
 >
