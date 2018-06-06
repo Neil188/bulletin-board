@@ -1,48 +1,55 @@
 import React from 'react';
-import { create } from 'react-test-renderer';
-import ReactDOM from 'react-dom';
+import Enzyme, { shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import Note from '../components/Note';
+
+Enzyme.configure({
+    adapter: new Adapter(),
+});
 
 jest.mock('../utils/random');
 
-describe('Note snapshots', () => {
+let wrapper;
+let onChange;
+let onRemove;
+const noteData = {
+    id: 1,
+    note: 'Test',
+};
+
+beforeEach( () => {
+    onChange = jest.fn();
+    onRemove = jest.fn();
+    wrapper = shallow(
+        <Note
+            index={noteData.id}
+            onChange={onChange}
+            onRemove={onRemove}
+        >
+            {noteData.note}
+        </Note>
+    );
+});
+
+describe('Snapshots', () => {
     test('Note snapshot test', () => {
-        const component = create(
-            <Note index={0} onChange={() => null} onRemove={() => null}>
-                Test
-            </Note>,
-            {
-                createNodeMock: (element) => {
-                    if (element.type === 'textarea') {
-                    // mock focus/select functions
-                        return {
-                            select: () => null,
-                            focus: () => null,
-                        };
-                    }
-                    return null;
-                },
-            }
-        );
-        let tree = component.toJSON();
-        expect(tree).toMatchSnapshot();
-
-        // simulate edit click
-        const testInstance = component.root;
-        testInstance.findByProps({className:'edit'}).props.onClick();
-        tree = component.toJSON();
-        expect(tree).toMatchSnapshot();
-
+        expect(wrapper).toMatchSnapshot();
     });
 });
 
-describe('Check for render failures', () => {
-    it('renders without crashing', () => {
-        const div = document.createElement('div');
-        ReactDOM.render(
-            <Note index={0} onChange={() => null} onRemove={() => null}>
-                Test
-            </Note>
-            , div);
+describe('Simulate actions', () => {
+
+    test('Click remove button', () => {
+        wrapper.find('.remove').simulate('click');
+        expect(onRemove).toHaveBeenLastCalledWith(noteData.id);
+    });
+
+    test('Click edit button', () => {
+
+        wrapper.find('.edit').simulate('click');
+
+        expect(wrapper.state('editing')).toBe(true);
+        expect(wrapper).toMatchSnapshot();
+
     });
 });
