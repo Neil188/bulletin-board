@@ -95,9 +95,20 @@ class LocalStorageMock {
     }
 }
 global.localStorage = new LocalStorageMock;
-localStorage.setItem('bulletin-board', JSON.stringify([{"id":0, note:"test"}]));
 
-describe('Board snapshots', () => {
+describe('Board snapshots with no local storage', () => {
+    test('Board snapshot test', () => {
+        const component = create(
+            <Board />,
+        );
+        const tree = component.toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+});
+
+describe('With mock local storage', () => {
+    localStorage.setItem('bulletin-board', JSON.stringify([{"id":0, note:"test"}]));
+
     test('Board snapshot test', () => {
         const component = create(
             <Board />,
