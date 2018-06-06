@@ -1,21 +1,7 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
 import ReactDOM from 'react-dom';
-import Note, { calcRandomBetween } from '../components/Note';
-
-describe('function tests', () => {
-    describe('calcRandomBetween tests', () => {
-        test('test return 0', () => {
-            expect(calcRandomBetween(true)(1,2,3)).toBe(0);
-        });
-
-        test('Non-test result', () => {
-            expect(calcRandomBetween(false)(0,0,3)).toBe(3);
-        });
-
-    });
-
-});
+import Note from '../components/Note';
 
 describe('Note snapshots', () => {
     test('Note snapshot test', () => {
