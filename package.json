@@ -1,72 +1,70 @@
 {
-  "name": "bulletin-board",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "coverage": "react-scripts test --env=jsdom --coverage",
-    "eject": "react-scripts eject",
-    "serve": "npx serve -s build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
-  },
-  "dependencies": {
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "enzyme-to-json": "^3.3.4",
-    "gh-pages": "^1.2.0",
-    "prop-types": "^15.6.1",
-    "raf": "^3.4.0",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
-    "react-draggable": "^3.0.5",
-    "react-icons": "^2.2.7",
-    "react-scripts": "1.1.4"
-  },
-  "devDependencies": {
-    "babel-eslint": "^7.2.3",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb": "^15.1.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-html": "^4.0.3",
-    "eslint-plugin-import": "^2.12.0",
-    "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-prettier": "^2.6.0",
-    "eslint-plugin-react": "^7.9.1",
-    "prettier": "^1.13.4",
-    "react-test-renderer": "^16.4.0",
-    "stylelint": "^9.2.1",
-    "stylelint-config-standard": "^18.2.0",
-    "stylelint-order": "^0.8.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Neil188/bulletin-board.git"
-  },
-  "homepage": "https://Neil188.github.io/bulletin-board",
-  "stylelint": {
-    "extends": "stylelint-config-standard",
-    "plugins": [
-      "stylelint-order"
-    ],
-    "rules": {
-      "order/properties-alphabetical-order": true,
-      "function-name-case": null
+    "name": "bulletin-board",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test --env=jsdom",
+        "coverage": "react-scripts test --env=jsdom --coverage",
+        "lint": "eslint src",
+        "eject": "react-scripts eject",
+        "serve": "npx serve -s build",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d build"
+    },
+    "dependencies": {
+        "enzyme": "^3.7.0",
+        "enzyme-adapter-react-16": "^1.6.0",
+        "enzyme-to-json": "^3.3.4",
+        "gh-pages": "^2.0.1",
+        "prop-types": "^15.6.2",
+        "raf": "^3.4.0",
+        "react": "^16.5.2",
+        "react-dom": "^16.5.2",
+        "react-draggable": "^3.0.5",
+        "react-icons": "^2.2.7",
+        "react-scripts": "1.1.4"
+    },
+    "devDependencies": {
+        "@neil188/eslint-config": "^1.4.0",
+        "babel-eslint": "^8.2.6",
+        "eslint": "^5.6.1",
+        "eslint-plugin-import": "^2.14.0",
+        "eslint-plugin-jsx-a11y": "^6.1.2",
+        "eslint-plugin-react": "^7.11.1",
+        "prettier": "^1.14.3",
+        "react-test-renderer": "^16.5.2",
+        "stylelint": "^9.6.0",
+        "stylelint-config-standard": "^18.2.0",
+        "stylelint-order": "^1.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Neil188/bulletin-board.git"
+    },
+    "homepage": "https://Neil188.github.io/bulletin-board",
+    "stylelint": {
+        "extends": "stylelint-config-standard",
+        "plugins": [
+            "stylelint-order"
+        ],
+        "rules": {
+            "order/properties-alphabetical-order": true,
+            "function-name-case": null
+        }
+    },
+    "jest": {
+        "collectCoverageFrom": [
+            "**/*.{js}",
+            "!**/node_modules/**",
+            "!**/coverage/**",
+            "!build/**",
+            "!src/index.js",
+            "!src/registerServiceWorker.js"
+        ],
+        "snapshotSerializers": [
+            "enzyme-to-json/serializer"
+        ]
     }
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "**/*.{js}",
-      "!**/node_modules/**",
-      "!**/coverage/**",
-      "!build/**",
-      "!src/index.js",
-      "!src/registerServiceWorker.js"
-    ],
-    "snapshotSerializers": [
-        "enzyme-to-json/serializer"
-    ]
-  }
 }
