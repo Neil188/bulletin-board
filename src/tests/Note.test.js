@@ -9,9 +9,9 @@ Enzyme.configure({
 
 jest.mock('../utils/random');
 
-let wrapper;
-let onChange;
-let onRemove;
+let wrapper,
+    onChange,
+    onRemove;
 const noteData = {
     id: 1,
     note: 'Test',

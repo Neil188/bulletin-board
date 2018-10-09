@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import FaPlus from 'react-icons/lib/fa/plus';
 import FaTrash from 'react-icons/lib/fa/trash';
-import Note from './Note';
 import defaultNoteData from '../data/data.json';
 import { getRandomNotes } from '../utils/random';
+import Note from './Note';
 
 export const nextId = ( prev ) => {
     const next = (prev || 0) + 1;
@@ -28,9 +28,9 @@ export const removeFromArray = (id) => ({ notes=[] }) => ({
 
 export const updateArray = (newText, i) => ({ notes=[] }) => ({
     notes: notes.map(
-        note => note.id !== i ?
-            note
-            : {...note, note: newText}
+        note => note.id === i ?
+            { ...note, note: newText }
+            : note
     ),
 });
 
@@ -79,9 +79,9 @@ export default class Board extends Component {
 
     addNew = () => this.add('New Note')
 
-    removeAll = () => this.setState( () => ({notes: []}))
+    removeAll = () => this.setState( () => ({ notes: [] }))
 
-    eachNote = (note,i) => (
+    eachNote = (note) => (
         <Note
             key={note.id}
             index={note.id}

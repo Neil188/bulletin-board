@@ -2,7 +2,7 @@ export const getRandomNotes = ( count = 0 , { noteData = [] } = {}) => {
     let result = [];
     for (let x=count; x>0; x--) {
         const random = Math.floor(Math.random() * noteData.length);
-        result = [...result, noteData[random] ];
+        result = [...result, noteData[+random] ];
     }
     return result;
 };

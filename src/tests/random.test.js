@@ -1,11 +1,11 @@
-import { getRandomNotes, calcRandomBetween } from "../utils/random";
+import { getRandomNotes, calcRandomBetween } from '../utils/random';
 
 describe('util function tests', () => {
 
     describe('Get Random Notes tests', () => {
 
         test('Returns valid, populated array', () => {
-            const test = {noteData : ['1', '2', '3']};
+            const test = { noteData : ['1', '2', '3'] };
             const length = 2;
             const result = getRandomNotes(length, test);
 

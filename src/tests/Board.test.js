@@ -32,7 +32,7 @@ describe('function tests', () => {
         });
 
         test('Add to populated array', () => {
-            const prev = {notes:[{id:1, note:'Test1'}]};
+            const prev = { notes:[{ id:1, note:'Test1' }] };
             const result = addToArray('Test2', 2)(prev);
             expect(result.notes).toHaveLength(2);
             expect(result.notes[1].note).toBe('Test2');
@@ -48,13 +48,13 @@ describe('function tests', () => {
         });
 
         test('Remove from populated array (id found)', () => {
-            const prev = {notes:[{id:1, note:'Test1'}]};
+            const prev = { notes:[{ id:1, note:'Test1' }] };
             const result = removeFromArray(1)(prev);
             expect(result.notes).toHaveLength(0);
         });
 
         test('Remove from populated array (id not found)', () => {
-            const prev = {notes:[{id:1, note:'Test1'}]};
+            const prev = { notes:[{ id:1, note:'Test1' }] };
             const result = removeFromArray(2)(prev);
             expect(result.notes).toHaveLength(1);
         });
@@ -69,14 +69,14 @@ describe('function tests', () => {
         });
 
         test('Update populated array (id found)', () => {
-            const prev = {notes:[{id:1, note:'Test1'}]};
+            const prev = { notes:[{ id:1, note:'Test1' }] };
             const result = updateArray('Update', 1)(prev);
             expect(result.notes).toHaveLength(1);
             expect(result.notes[0].note).toBe('Update');
         });
 
         test('Update populated array (id not found)', () => {
-            const prev = {notes:[{id:1, note:'Not changed'}]};
+            const prev = { notes:[{ id:1, note:'Not changed' }] };
             const result = updateArray('Update', 2)(prev);
             expect(result.notes).toHaveLength(1);
             expect(result.notes[0].note).toBe('Not changed');
@@ -124,12 +124,12 @@ describe('Board snapshots with no local storage', () => {
 describe('With mock local storage', () => {
     const testNotes = [
         {
-            "id":1,
-            note:"test",
+            'id':1,
+            note:'test',
         },
         {
-            "id":2,
-            note:"New Note",
+            'id':2,
+            note:'New Note',
         },
     ];
     let wrapper;
