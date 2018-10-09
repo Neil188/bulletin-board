@@ -153,14 +153,6 @@ exports[`With mock local storage Remove note 1`] = `
   className="board"
 >
   <Note
-    index={1}
-    key="1"
-    onChange={[Function]}
-    onRemove={[Function]}
-  >
-    test
-  </Note>
-  <Note
     index={2}
     key="2"
     onChange={[Function]}
@@ -195,7 +187,7 @@ exports[`With mock local storage Update note 1`] = `
     onChange={[Function]}
     onRemove={[Function]}
   >
-    test
+    New text
   </Note>
   <button
     aria-label="add"

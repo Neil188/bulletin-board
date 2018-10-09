@@ -27,14 +27,14 @@ class Note extends Component {
         );
     }
 
-    componentDidUpdate() {
-        let textArea;
-        if (this.state.editing) {
-            textArea = this.newText;
-            textArea.focus();
-            textArea.select();
-        }
-    }
+    // componentDidUpdate() {
+    //     let textArea;
+    //     if (this.state.editing) {
+    //         textArea = this.newText;
+    //         // textArea.focus();
+    //         // textArea.select();
+    //     }
+    // }
 
     edit = () => {
         this.setState(() => ({
