@@ -1,3 +1,4 @@
+/* eslint react/no-deprecated: warn */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Draggable from 'react-draggable';
