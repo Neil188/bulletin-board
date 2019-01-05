@@ -25,6 +25,7 @@ exports[`Simulate actions Click edit button 1`] = `
   onStart={[Function]}
   onStop={[Function]}
   position={null}
+  scale={1}
   transform={null}
 >
   <div>
@@ -83,6 +84,7 @@ exports[`Snapshots Note snapshot test 1`] = `
   onStart={[Function]}
   onStop={[Function]}
   position={null}
+  scale={1}
   transform={null}
 >
   <div>
